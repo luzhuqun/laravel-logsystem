@@ -41,8 +41,8 @@ class SearchController extends Controller
                 } else {
                     $query = zft::whereIn('IsErrorLog',[false,true]);
                 }
-                $start = \DateTime::createFromFormat('Y-m-d H:i', $explode['1']);
-                $end = \DateTime::createFromFormat('Y-m-d H:i', $explode['2']);
+                $start = $explode['1'];
+                $end = $explode['2'];
 
                 $query = empty($explode['3'])?$query:$query->where('Level',intval($explode['3']));
                 $query = empty($explode['4'])?$query:$query->where('DevNo','like','%'.$explode['4'].'%');

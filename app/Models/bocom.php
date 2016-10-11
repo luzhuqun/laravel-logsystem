@@ -6,6 +6,6 @@ use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
 class bocom extends Eloquent
 {
-    protected $collection = 'log_list';
+    protected $collection = 'test_jh';
     protected $connection = 'mongodb';
 }

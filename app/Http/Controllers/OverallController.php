@@ -18,7 +18,7 @@ class OverallController extends Controller
      */
     public function index()//总体统计
     {
-        $datetime = \DateTime::createFromFormat('Y-m-d h:i:s.u', '2016-01-26 00:00:00.000000');
+       /* $datetime = \DateTime::createFromFormat('Y-m-d h:i:s.u', '2016-01-26 00:00:00.000000');
         $date0 = date_add($datetime, date_interval_create_from_date_string('+1 days'));
         $datetime = \DateTime::createFromFormat('Y-m-d h:i:s.u', '2016-01-26 00:00:00.000000');
         $date1 = date_add($datetime, date_interval_create_from_date_string('-1 days'));
@@ -39,7 +39,23 @@ class OverallController extends Controller
         $zft4 = zft::where('IsErrorLog',true)->where('Time','>', $date3)->where('Time','<=', $date2)->count();
         $zft5 = zft::where('IsErrorLog',true)->where('Time','>', $date4)->where('Time','<=', $date3)->count();
         $zft6 = zft::where('IsErrorLog',true)->where('Time','>', $date5)->where('Time','<=', $date4)->count();
-        $zft7 = zft::where('IsErrorLog',true)->where('Time','>', $date6)->where('Time','<=', $date5)->count();
+        $zft7 = zft::where('IsErrorLog',true)->where('Time','>', $date6)->where('Time','<=', $date5)->count();*/
+        $date1 = date('Y-m-d');
+        $date0 = date('Y-m-d', strtotime("+1 day"));
+        $date2 = date('Y-m-d', strtotime("-1 day"));
+        $date3 = date('Y-m-d', strtotime("-2 day"));
+        $date4 = date('Y-m-d', strtotime("-3 day"));
+        $date5 = date('Y-m-d', strtotime("-4 day"));
+        $date6 = date('Y-m-d', strtotime("-5 day"));
+        $date7 = date('Y-m-d', strtotime("-6 day"));
+
+        $zft1 = zft::where('IsErrorLog',true)->where('Time','>', $date1)->where('Time','<=', $date0)->count();
+        $zft2 = zft::where('IsErrorLog',true)->where('Time','>', $date2)->where('Time','<=', $date1)->count();
+        $zft3 = zft::where('IsErrorLog',true)->where('Time','>', $date3)->where('Time','<=', $date2)->count();
+        $zft4 = zft::where('IsErrorLog',true)->where('Time','>', $date4)->where('Time','<=', $date3)->count();
+        $zft5 = zft::where('IsErrorLog',true)->where('Time','>', $date5)->where('Time','<=', $date4)->count();
+        $zft6 = zft::where('IsErrorLog',true)->where('Time','>', $date6)->where('Time','<=', $date5)->count();
+        $zft7 = zft::where('IsErrorLog',true)->where('Time','>', $date7)->where('Time','<=', $date6)->count();
 
         return view('Home.OverallStatistics',['zft1'=>$zft1, 'zft2'=>$zft2, 'zft3'=>$zft3, 'zft4'=>$zft4, 'zft5'=>$zft5, 'zft6'=>$zft6, 'zft7'=>$zft7]);
     }
@@ -79,70 +95,5 @@ class OverallController extends Controller
     {
         $bocomerr = bocom::where('Succeed',false)->orderBy('Trade_Time','desc')->first()->toJson();
         return json_encode($bocomerr);
-    }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-      //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-      //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-      //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-      //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-      //
     }
 }
